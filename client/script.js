@@ -61,6 +61,14 @@ function chatStrip(isAi, value, uniqueId) {
 const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // jika kosong tidak akan mengirim
+    if(form.querySelector('textarea[name="prompt"]').value.trim().length == 0) {
+        return;
+    }
+
+    // disabled submit
+    form.querySelector('button').disabled = true;
+
     const data = new FormData(form);
 
     // generate user chatstripe
@@ -106,6 +114,9 @@ const handleSubmit = async (e) => {
 
         alert(err);
     }
+
+    // emabled submit
+    form.querySelector('button').disabled = false;
 }
 
 form.addEventListener('submit', handleSubmit);
